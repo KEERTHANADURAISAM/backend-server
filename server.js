@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongodb = require('mongodb');
+const dotenv=require('dotenv').config();
 const mongoClient = mongodb.MongoClient;
 
 
+
 // db connection
-const URL='mongodb://localhost:27017';
+const URL=process.env.DB;
 
 const DB ='contacts';
 
@@ -105,3 +107,5 @@ app.get('/home',(req,res)=>{
 })
 
 app.listen(process.env.PORT || 3000);
+
+
