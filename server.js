@@ -10,7 +10,7 @@ const mongoClient = mongodb.MongoClient;
 // db connection
 const URL=process.env.DB;
 
-const DB ='contacts';
+const DB ='contact';
 
 // const users=[];
 // middleware
