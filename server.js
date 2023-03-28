@@ -26,7 +26,7 @@ app.get('/users', async function(req,res){
 try {
     const connection = await mongoClient.connect(URL);
     const db=connection.db(DB);
-   const user =  await db.collection('contactuser').find().toArray();
+   const user =  await db.collection('user contact').find().toArray();
     await connection.close();
     res.json(user);
 
@@ -41,7 +41,7 @@ app.post('/createuser', async function(req,res){
     try {
         const connection = await mongoClient.connect(URL);
         const db=connection.db(DB);
-        const user = await db.collection('contactuser').insertOne(req.body);
+        const user = await db.collection('user contact').insertOne(req.body);
         await connection.close();
         res.json(user);
     
@@ -57,7 +57,7 @@ app.post('/createuser', async function(req,res){
         try {
             const connection = await mongoClient.connect(URL);
             const db=connection.db(DB);
-            const user = await db.collection('contactuser').findOneAndUpdate({_id:new mongodb.ObjectId(req.params.id)},{$set:req.body});
+            const user = await db.collection('user contact').findOneAndUpdate({_id:new mongodb.ObjectId(req.params.id)},{$set:req.body});
             await connection.close();
             res.json(user);
         
@@ -74,7 +74,7 @@ app.post('/createuser', async function(req,res){
             try {
                 const connection = await mongoClient.connect(URL);
                 const db=connection.db(DB);
-                const user = await db.collection('contactuser').findOneAndDelete({_id:new mongodb.ObjectId(req.params.id)});
+                const user = await db.collection('user contact').findOneAndDelete({_id:new mongodb.ObjectId(req.params.id)});
                 await connection.close();
                 res.json(user);
             
@@ -90,7 +90,7 @@ app.get('/user/:id', async function(req,res){
     try {
         const connection = await mongoClient.connect(URL);
         const db=connection.db(DB);
-        const user = await db.collection('contactuser').findOne({_id:new mongodb.ObjectId(req.params.id)});
+        const user = await db.collection('user contact').findOne({_id:new mongodb.ObjectId(req.params.id)});
         await connection.close();
         res.json(user);
     
