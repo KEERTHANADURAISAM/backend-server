@@ -105,25 +105,30 @@ app.get("/user/:id", async function (req, res) {
 
 // post method
 
-app.post("/equipment", function (req, res) {
-  try {
-    console.log(req.body);
-    req.body.id = equipment.length + 1;
-    equipment.push(req.body);
-    res.json({ message: "This is User Post Page " });
-  } catch (error) {
-    res.json({ message: "can't create" });
-  }
+app.post("/equipment", async function (req, res) {
+    try {
+        const connection = await mongoClient.connect(URL);
+        const db = connection.db(DB);
+        const user = await db.collection("equipment image").insertOne(req.body);
+        await connection.close();
+        res.json(user);
+      } catch (error) {
+        console.log(error);
+        res.json({ message: "create getting error" });
+      }
 });
 
-app.get("/getequipment", function (req, res) {
-  try {
-    let resUser = [];
-    resUser.push(equipment);
-    res.json(resUser);
-  } catch (error) {
-    res.json({ message: "can't get" });
-  }
+app.get("/getequipment", async function (req, res) {
+    try {
+        const connection = await mongoClient.connect(URL);
+        const db = connection.db(DB);
+        const user = await db.collection("equipment image").find().toArray();
+        await connection.close();
+        res.json(user);
+      } catch (error) {
+        console.log(error);
+        res.json({ message: "get error" });
+      }
 });
 
 // console.log(process);
