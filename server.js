@@ -8,6 +8,7 @@ const equipment = [];
 
 // db connection
 const URL = process.env.DB;
+// const URL="mongodb://localhost:27017";
 
 const DB = "contact";
 
@@ -105,7 +106,7 @@ app.get("/user/:id", async function (req, res) {
 
 // post method
 
-app.post("/equipment", async function (req, res) {
+app.post("/postequipment", async function (req, res) {
     try {
         const connection = await mongoClient.connect(URL);
         const db = connection.db(DB);
