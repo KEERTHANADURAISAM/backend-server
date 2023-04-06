@@ -132,6 +132,24 @@ app.get("/getequipment", async function (req, res) {
       }
 });
 
+
+// get by id
+
+app.get("/img/:id", async function (req, res) {
+  try {
+    const connection = await mongoClient.connect(URL);
+    const db = connection.db(DB);
+    const user = await db
+      .collection("equipment image")
+      .findOne({ _id: new mongodb.ObjectId(req.params.id) });
+    await connection.close();
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.json({ message: "can't get by id" });
+  }
+});
+
 // console.log(process);
 
 app.get("/home", (req, res) => {
