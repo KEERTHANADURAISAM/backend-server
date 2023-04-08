@@ -135,7 +135,7 @@ app.get("/getequipment", async function (req, res) {
 
 // get by id
 
-app.get("/img/:id", async function (req, res) {
+app.get("/getimg/:id", async function (req, res) {
   try {
     const connection = await mongoClient.connect(URL);
     const db = connection.db(DB);
