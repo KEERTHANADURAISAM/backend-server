@@ -6,6 +6,7 @@ const dotenv = require("dotenv").config();
 const mongoClient = mongodb.MongoClient;
 const equipment = [];
 
+
 // db connection
 const URL = process.env.DB;
 // const URL="mongodb://localhost:27017";
@@ -155,5 +156,8 @@ app.get("/getimg/:id", async function (req, res) {
 app.get("/home", (req, res) => {
   res.json({ message: "working" });
 });
+
+
+
 
 app.listen(process.env.PORT || 3000);
